@@ -2,7 +2,7 @@
 /*
 	Plugin Name: WP Shortly
 	Description: URL Shorter for WordPress
-	Version: 0.1.1
+	Version: 0.2
 	Author: Florian Girardey
 	Author URI: http://www.florian.girardey.net
 	Text Domain: shortly
@@ -14,7 +14,7 @@
 defined( 'ABSPATH' ) or die( 'Cheatin\' uh?' );
 
 // Social NetForum Defines
-define( 'WP_SHORTLY_VERSION'          , '0.1.1' );
+define( 'WP_SHORTLY_VERSION'          , '0.2' );
 define( 'WP_SHORTLY_SLUG'             , 'shortly_settings' );
 define( 'WP_SHORTLY_DOMAIN'           , 'shortly' );
 define( 'WP_SHORTLY_FILE'             , __FILE__ );
@@ -22,6 +22,7 @@ define( 'WP_SHORTLY_PATH'             , realpath( plugin_dir_path( WP_SHORTLY_FI
 define( 'WP_SHORTLY_INC_PATH'         , realpath ( WP_SHORTLY_PATH . 'inc/' ) .'/' );
 define( 'WP_SHORTLY_INC_CLASS_PATH'   , realpath ( WP_SHORTLY_INC_PATH . 'class/' ) .'/' );
 define( 'WP_SHORTLY_LIB_PATH'         , realpath ( WP_SHORTLY_PATH . 'lib/' ) .'/' );
+define( 'WP_SHORTLY_ADMIN_PATH'       , realpath ( WP_SHORTLY_INC_PATH . 'admin/' ) .'/' );
 define( 'WP_SHORTLY_URL'              , plugin_dir_url( WP_SHORTLY_FILE ) );
 define( 'WP_SHORTLY_INC_URL'          , WP_SHORTLY_URL . 'inc/' );
 define( 'WP_SHORTLY_FRONT_URL'        , WP_SHORTLY_INC_URL . 'front/' );
@@ -31,7 +32,7 @@ define( 'WP_SHORTLY_ADMIN_CSS_URL'    , WP_SHORTLY_ADMIN_URL . 'css/' );
 define( 'WP_SHORTLY_ADMIN_IMG_URL'    , WP_SHORTLY_ADMIN_URL . 'img/' );
 define( 'WP_SHORTLY_WIDGET_PATH'      , realpath ( WP_SHORTLY_INC_PATH . 'widget/' ) .'/' );
 
-
+require  WP_SHORTLY_ADMIN_PATH . 'main.php';
 
 class Shortly
 {
