@@ -8,7 +8,7 @@ Change Log
 
 ### 0.1
 
-* New Feature: Filter the short circuit the default WordPress shortlink function.
+* New Feature: Filter and short circuit the default WordPress shortlink function.
 * New Feature: bit.ly API support.
 
 Author
