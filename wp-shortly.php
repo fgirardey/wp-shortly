@@ -2,7 +2,7 @@
 /*
 	Plugin Name: WP Shortly
 	Description: URL Shorter for WordPress
-	Version: 0.1
+	Version: 0.1.1
 	Author: Florian Girardey
 	Author URI: http://www.florian.girardey.net
 	Text Domain: shortly
@@ -14,7 +14,7 @@
 defined( 'ABSPATH' ) or die( 'Cheatin\' uh?' );
 
 // Social NetForum Defines
-define( 'WP_SHORTLY_VERSION'          , '0.1' );
+define( 'WP_SHORTLY_VERSION'          , '0.1.1' );
 define( 'WP_SHORTLY_SLUG'             , 'shortly_settings' );
 define( 'WP_SHORTLY_DOMAIN'           , 'shortly' );
 define( 'WP_SHORTLY_FILE'             , __FILE__ );
@@ -116,20 +116,15 @@ class Shortly
 		$output = "";
 		try {
 			$ch = curl_init($uri);
-			curl_setopt($ch, CURLOPT_HEADER, 0);
-			curl_setopt($ch, CURLOPT_TIMEOUT, 4);
-			curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 2);
-			curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 			$output = curl_exec($ch);
 		}
 		catch (Exception $e) {}
 		return $output;
 	}
 
-
 }
+
 
 
 if( !function_exists( 'shortly_get_shortlink' ) ):
