@@ -6,6 +6,9 @@ URL Shorter for **WordPress**
 Change Log
 -----------
 
+### 0.1.1
+* Plugin optimization
+
 ### 0.1
 
 * New Feature: Filter and short circuit the default WordPress shortlink function.
