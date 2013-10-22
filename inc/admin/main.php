@@ -3,7 +3,16 @@
 // Init the Admin side of the plugin
 add_action( 'admin_init', 'register_options_setting' );
 function register_options_setting() {
-	register_setting( 'shortly_options', WP_SHORTLY_SLUG, 'sanitize_settings_callback' );
+	register_setting( 'shortly_options', WP_SHORTLY_SLUG, 'shortly_sanitize_settings_callback' );
+}
+
+function shortly_sanitize_settings_callback( $inputs ) {
+
+	$inputs['bitly_access_token'] = ( strlen( $inputs['bitly_access_token'] ) == 40 ) ? $inputs['bitly_access_token'] : '';
+	if( empty( $inputs['bitly_access_token'] ) ) 
+			add_settings_error( WP_SHORTLY_SLUG, '1', __('Error 1 : The Bit.ly Access Token is a 40 characters string', WP_SHORTLY_DOMAIN), 'error' );
+
+	return $inputs;
 }
 
 /**
@@ -33,11 +42,12 @@ function shortly_add_admin_css_js() {
 
 function shortly_render_option_page() {
 	add_settings_section( 'shortly_settings_display', __('WP Shortly Settings', WP_SHORTLY_DOMAIN), '__return_false', 'wp_shortly' );
-	?>
+		add_settings_field( 'shortly_bitly_access_token', __( 'Bit.ly API Access Token', WP_SHORTLY_DOMAIN ), 'shortly_render_options_fields', 'wp_shortly', 'shortly_settings_display',
+			array( 'type'=>'text', 'label_for' => 'bitly_access_token', 'placeholder' => '56462362eff7d3b88652375726903c7e3a4e4a52', 'size' => '40', 'description'=> __('Access Token from your Bit.ly API.', WP_SHORTLY_DOMAIN ) )
+		);	?>
 	<div class="wrap">
 		<div id="icon-link-manager" class="icon32"></div>
 		<h2>WP Shortly <sub>v<?php echo WP_SHORTLY_VERSION; ?></sub></h2>
-		<?php settings_errors(); ?>  
 		<form action="options.php" method="post">
 			<?php settings_fields( 'shortly_options' ); ?>
 			<?php do_settings_sections( 'wp_shortly' ); ?>
@@ -46,4 +56,41 @@ function shortly_render_option_page() {
 	</div>
 	<?php
 
+}
+
+function shortly_render_options_fields( $args ) {
+	extract( $args );
+	$name = isset( $name ) ? $name : $label_for;
+	$description = isset( $description ) ? $description : '';
+	switch ( $type ) {
+		case 'text':
+			$value = shortly_get_option( $name );
+			?>
+			<label>
+				<input type="text" value="<?php echo $value; ?>" id="<?php echo $label_for; ?>" name="<?php echo WP_SHORTLY_SLUG ?>[<?php echo $name; ?>]" <?php if ( isset( $size ) ) echo 'size="' . ( $size+9 ) . '"' ?> <?php if ( isset( $placeholder ) ) echo 'placeholder="' . $placeholder . '"' ?>>
+			</label>
+			<p class="description">
+				<?php echo $description; ?>
+			</p>
+			<?php
+			break;
+		
+		default:
+			break;
+	}
+}
+
+/**
+ * This public function allow template and theme customers to directly get Social Netforum Options
+ * 
+ * @param mixed $option  Description.
+ * @param mixed $default Description.
+ *
+ * @access public
+ *
+ * @return mixed Value.
+ */
+function shortly_get_option( $option, $default=false ) {
+	$options = get_option( WP_SHORTLY_SLUG );
+	return isset( $options[$option] ) ? $options[$option] : $default;
 }

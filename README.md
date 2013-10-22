@@ -6,6 +6,10 @@ URL Shorter for **WordPress**
 Change Log
 -----------
 
+### 0.2
+* New Feature: Add page settings with the WordPress API Settings
+
+
 ### 0.1.1
 * Plugin optimization
 

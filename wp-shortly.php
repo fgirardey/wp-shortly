@@ -145,11 +145,12 @@ if( !function_exists( 'shortly_get_shortlink' ) ):
 	function shortly_get_shortlink( $id, $context, $allow_slugs ) {
 
 		$permalink = get_permalink( $id );
+        $access_token = (string) shortly_get_option( 'bitly_access_token' );
 
-		$shortly = new Shortly('56462362eff7d3b88652375726903c7e3a4e4a52');
+		$shortly = new Shortly( $access_token );
 		$permalink = $shortly->shorten($permalink, 'bit.ly');
 		
-		return $permalink['url'];
+		return isset( $permalink['url'] ) ? $permalink['url'] : false;
 
 	}
 
