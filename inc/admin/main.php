@@ -43,7 +43,7 @@ function shortly_add_admin_css_js() {
 function shortly_render_option_page() {
 	add_settings_section( 'shortly_settings_display', __('WP Shortly Settings', WP_SHORTLY_DOMAIN), '__return_false', 'wp_shortly' );
 		add_settings_field( 'shortly_bitly_access_token', __( 'Bit.ly API Access Token', WP_SHORTLY_DOMAIN ), 'shortly_render_options_fields', 'wp_shortly', 'shortly_settings_display',
-			array( 'type'=>'text', 'label_for' => 'bitly_access_token', 'placeholder' => '56462362eff7d3b88652375726903c7e3a4e4a52', 'size' => '40', 'description'=> __('Access Token from your Bit.ly API.', WP_SHORTLY_DOMAIN ) )
+			array( 'type'=>'text', 'label_for' => 'bitly_access_token', 'placeholder' => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx', 'size' => '40', 'description'=> __('Access Token from your Bit.ly API.', WP_SHORTLY_DOMAIN ) )
 		);	?>
 	<div class="wrap">
 		<div id="icon-link-manager" class="icon32"></div>
