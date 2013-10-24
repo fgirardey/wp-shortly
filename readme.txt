@@ -1,6 +1,6 @@
 === WP Shortly ===
 Contributors: fgirardey
-Tags: url, link, shorten, shortlink, bit.ly
+Tags: url, link, shortener, shortlink, bit.ly, hyperlink
 Requires at least: 2.7
 Tested up to: 3.6.1
 Stable tag: 0.2
