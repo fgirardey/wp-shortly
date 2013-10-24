@@ -1,7 +1,7 @@
 <?php
 /*
 	Plugin Name: WP Shortly
-	Description: URL Shorter for WordPress
+	Description: URL Shortener for WordPress
 	Version: 0.2
 	Author: Florian Girardey
 	Author URI: http://www.florian.girardey.net

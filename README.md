@@ -1,7 +1,7 @@
 WP Shortly
 ==========
 
-URL Shorter for **WordPress**
+URL Shortener for **WordPress**
 
 Change Log
 -----------
